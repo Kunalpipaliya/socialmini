@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 
 const Profile = ({ posts, setPosts,follow,setFollow }) => {
@@ -9,9 +9,11 @@ const Profile = ({ posts, setPosts,follow,setFollow }) => {
         setPosts(updatedPost)
     }
     const handleEdit=(id)=>{
-        const filteredpost=posts.filter((p)=>p.id==id)
-        
-        
+        const filteredpost=posts.filter((p)=>p.id==id)    
+    }
+    const [followerlist,setFollowerlist]=useState(false)
+    const toggleFollower=()=>{
+        setFollowerlist(followerlist===true?false:true)
     }
     const filterFollowing=follow.filter((f)=>f.followedBy===currentUser.name)
     const filterFollowers=follow.filter((f)=>f.following===currentUser.name)
@@ -30,11 +32,21 @@ const Profile = ({ posts, setPosts,follow,setFollow }) => {
                     <strong>Posts</strong>
                     <span className='text-center'>{filteredposts.length}</span>
                 </div>
-                <div className="d-flex flex-column">
+                <div className="d-flex flex-column" onClick={toggleFollower}>
                     <strong>Followers</strong>
                     <span className='text-center'>{filterFollowers.length}</span>
                 </div>
-                <div className="d-flex flex-column">
+                {
+                    followerlist===true?
+                    filterFollowers.map((item,index)=>{
+                        return(
+
+                            <p>{item.following}</p>
+                        )
+                        }):""
+                }
+                   
+                <div className="d-flex flex-column" >
                     <strong>Following</strong>
                     <span className='text-center'>{filterFollowing.length}</span>
                 </div>
