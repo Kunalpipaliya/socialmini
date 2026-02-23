@@ -103,6 +103,7 @@ const PostFeed = ({ posts, setPosts, follow, setFollow }) => {
                                     {alreadyFollowing ? <button className="btn btn-secondary" type="button" onClick={() => handleUnfollow(item.author)}>Following</button> : <button className={currentUser.name === item.author ? "d-none" : "btn btn-primary"} type="button" onClick={() => handleFollow(item.author)}>Follow</button>}
                                 </div>
                                 <hr />
+                                <img src={item.files} alt="" />
                                 <p>{item.post}</p>
                                 <hr />
 
