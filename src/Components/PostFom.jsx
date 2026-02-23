@@ -11,7 +11,6 @@ const PostForm = ({ posts, setPosts }) => {
         const newPost = {
             id: Date.now(),
             post,
-            likes: 0,
             author:currentUser.name,
             authorid:currentUser.id,
             authorMail:currentUser.email

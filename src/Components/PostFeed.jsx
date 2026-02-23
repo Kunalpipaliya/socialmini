@@ -8,15 +8,35 @@ const PostFeed = ({ posts, setPosts, follow, setFollow }) => {
         return savedComments ? JSON.parse(savedComments) : []
     })
     const [activeCommentId, setActiveCommentId] = useState(null)
-    const handleLike = (id) => {
-        const updated = posts.map((item) =>
-            item.id === id
-                ? { ...item, likes: item.likes + 1 }
-                : item
-        );
 
-        setPosts(updated);
-    };
+    const [likes, setLikes] = useState(() => {
+        const savedLikes = localStorage.getItem('likes')
+        return savedLikes ? JSON.parse(savedLikes) : []
+    })
+    useEffect(() => {
+        localStorage.setItem('likes', JSON.stringify(likes))
+    }, [likes])
+    // const handleLike = (id) => {
+    //     const updated = posts.map((item) =>
+    //         item.id === id
+    //             ? { ...item, likes: item.likes + 1 }
+    //             : item
+    //     );
+
+    //     setPosts(updated);
+    // };
+    const handleLike = (id) => {
+        // const liked = likes.find((l) => l.id === id && l.likedBy === currentUser.name)
+        const likeList = {
+            id: id,
+            likedBy: currentUser.name
+        }
+        setLikes([...likes, likeList])
+    }
+    const handleDislike = (id) => {
+        const dislike = likes.filter((l) => !(l.id === id && l.likedBy === currentUser.name))
+        setLikes(dislike)
+    }
     const toggleComment = (id) => {
         setActiveCommentId(activeCommentId === id ? null : id)
     }
@@ -54,19 +74,21 @@ const PostFeed = ({ posts, setPosts, follow, setFollow }) => {
         }
     }
     const handleUnfollow = (author) => {
-        const unfollow = follow.filter((f) =>f.following !==author)
-        setFollow( unfollow)
+        const unfollow = follow.filter((f) => f.following !== author)
+        setFollow(unfollow)
     }
     return (
         <Row className=" m-auto mb-5">
             {
                 posts.map((item, index) => {
+                    const liked = likes.find((l) => l.id === item.id && l.likedBy === currentUser.name)
+                    const likedcount = likes.filter((l) => l.id === item.id)
                     const alreadyFollowing = follow.find((f) => f.followedBy === currentUser.name && f.following === item.author)
                     const filteredComments = comments.filter((c) => c.id === item.id)
                     return (
 
                         <Col md="4" key={index}>
-                            <div className="p-3 mt-3 shadow-sm rounded bg-white">
+                            <div className="p-3 mt-3 shadow-sm rounded bg-light">
                                 <div className="d-flex justify-content-between align-items-center">
 
                                     <div className="d-flex align-items-center gap-3">
@@ -86,9 +108,9 @@ const PostFeed = ({ posts, setPosts, follow, setFollow }) => {
 
                                 <div className="d-flex justify-content-around align-items-center">
 
-                                    <div className="d-flex gap-2 align-items-center" onClick={() => handleLike(item.id)} style={{ cursor: "pointer" }}>
-                                        <i className="fa-solid text-danger fa-heart"></i>
-                                        <span>{item.likes}</span>
+                                    <div className="d-flex gap-2 align-items-center" style={{ cursor: "pointer" }}>
+                                        <i className={liked ? "fa-solid text-danger fa-heart" : "fa-regular fa-heart"} onClick={liked ? () => handleDislike(item.id) : () => handleLike(item.id)}  ></i>
+                                        <span>{likedcount.length}</span>
                                     </div>
                                     <div className="d-flex gap-2 align-items-center" >
 
