@@ -40,49 +40,46 @@ function App() {
     <div className="App ">
       <BrowserRouter>
         <Switch>
+
           <Route path="/post">
             <Header />
-
             <PostForm posts={posts} setPosts={setPosts} />
             <Navigationbar />
-
           </Route>
+
           <Route path="/notification">
             <Header />
-
             <Notification />
             <Navigationbar />
-
-
           </Route>
+
           <Route path='/search'>
             <Header />
-
             <Search users={users} setUsers={setUsers} />
             <Navigationbar />
-
           </Route>
+
           <Route path="/login">
             <Login users={users} setUsers={setUsers} />
           </Route>
+
           <Route path="/signup">
             <Signup users={users} setUsers={setUsers} />
           </Route>
+
           <Route path="/profile">
             <Header />
-
             <Profile posts={posts} setPosts={setPosts} follow={follow} setFollow={setFollow} />
             <Navigationbar />
-
           </Route>
 
           <Route path="/">
             <Header />
-
             <Home />
             <PostFeed posts={posts} setPosts={setPosts} follow={follow} setFollow={setFollow} />
             <Navigationbar />
           </Route>
+
         </Switch>
 
       </BrowserRouter>

@@ -39,6 +39,7 @@ const Profile = ({ posts, setPosts,follow,setFollow }) => {
                     <span className='text-center'>{filterFollowing.length}</span>
                 </div>
             </div>
+            
             <br />
             <hr />
             <br />

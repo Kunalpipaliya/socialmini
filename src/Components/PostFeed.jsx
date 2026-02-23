@@ -87,7 +87,7 @@ const PostFeed = ({ posts, setPosts, follow, setFollow }) => {
                     const filteredComments = comments.filter((c) => c.id === item.id)
                     return (
 
-                        <Col md="4" key={index}>
+                        <Col md="12" key={index}>
                             <div className="p-3 mt-3 shadow-sm rounded bg-light">
                                 <div className="d-flex justify-content-between align-items-center">
 
@@ -120,14 +120,18 @@ const PostFeed = ({ posts, setPosts, follow, setFollow }) => {
 
                                 </div>
                                 <div className={activeCommentId === item.id ? "d-block" : "d-none"}>
+                                    <strong>Comments</strong>
                                     {
                                         filteredComments.map((item, index) => {
                                             return (
-                                                <div key={index} className="my-1 d-flex gap-2 align-items-start  bg-light p-3 rounded">
-                                                    <i className="fa-solid fa-circle-user fs-1"></i>
-                                                    <div className=" d-flex flex-column">
-                                                        <strong>{item.user}</strong>
-                                                        <span>{item.comment}</span>
+                                                <div key={index}>
+
+                                                    <div className="my-1 d-flex gap-2 align-items-start  bg-white shadow-sm p-3 rounded">
+                                                        <i className="fa-solid fa-circle-user fs-1"></i>
+                                                        <div className=" d-flex flex-column">
+                                                            <strong>{item.user}</strong>
+                                                            <span>{item.comment}</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             )

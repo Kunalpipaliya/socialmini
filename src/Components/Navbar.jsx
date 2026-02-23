@@ -15,7 +15,7 @@ const Navbar = () => {
                     </li>
                     <li className='nav-items'>
 
-                        <Link className='nav-link text-dark text-decoration-none ' href="/notification"><i className="fa-solid fa-bell fs-3"></i></Link>
+                        <Link className='nav-link text-dark text-decoration-none ' href="/notification"><i className="fa-solid fa-comment-dots fs-3"></i></Link>
                     </li>
                     <li className='nav-items'>
 
