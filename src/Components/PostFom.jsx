@@ -4,7 +4,7 @@ import React, { useState } from "react";
 const PostForm = ({ posts, setPosts }) => {
     const [post, setPost] = useState("");
      const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-
+    
     const addPost = () => {
         if (!post.trim()) return;
 

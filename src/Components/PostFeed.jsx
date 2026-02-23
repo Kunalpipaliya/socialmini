@@ -89,7 +89,7 @@ const PostFeed = ({ posts, setPosts, follow, setFollow }) => {
 
                         <Col md="12" key={index}>
                             <div className="p-3 mt-3 shadow-sm rounded bg-light">
-                                <div className="d-flex justify-content-between align-items-center">
+                                <div className="d-flex justify-content-between flex-wrap align-items-center">
 
                                     <div className="d-flex align-items-center gap-3">
                                         <i className="fa-solid fa-circle-user fs-1"></i>
