@@ -18,3 +18,12 @@ body::-webkit-scrollbar{
 #header1{
     margin-bottom: 80px;
 }
+.chatbox{
+    margin-top: 5px;
+    min-height: 61vh;
+    /* background-color: aqua; */
+    overflow:auto ;
+    height: 61vh;
+    padding: 10px;
+    position: relative;
+}

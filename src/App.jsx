@@ -36,6 +36,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem('follow', JSON.stringify(follow))
   }, [follow])
+
+  const [messages,setMessages]=useState(()=>{
+    const savedMessages=localStorage.getItem('messages')
+    return savedMessages?JSON.parse(savedMessages):[]
+  })
+  useEffect(()=>{
+    localStorage.setItem('messages',JSON.stringify(messages))
+  },[messages])
   return (
     <div className="App ">
       <BrowserRouter>
@@ -49,7 +57,7 @@ function App() {
 
           <Route path="/notification">
             <Header />
-            <Notification />
+            <Notification follow={follow} setFollow={setFollow} messages={messages} setMessages={setMessages} />
             <Navigationbar />
           </Route>
 

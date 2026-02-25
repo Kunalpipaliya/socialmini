@@ -1,22 +1,22 @@
 import React, { useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
 
-const Profile = ({ posts, setPosts,follow,setFollow }) => {
+const Profile = ({ posts, setPosts, follow, setFollow }) => {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'))
     const filteredposts = posts.filter((p) => p.author === currentUser.name && p.authorid === currentUser.id)
     const handleDelete = (id) => {
         const updatedPost = posts.filter((p) => p.id !== id)
         setPosts(updatedPost)
     }
-    const handleEdit=(id)=>{
-        const filteredpost=posts.filter((p)=>p.id==id)    
+    const handleEdit = (id) => {
+        const filteredpost = posts.filter((p) => p.id == id)
     }
-    const [followerlist,setFollowerlist]=useState(false)
-    const toggleFollower=()=>{
-        setFollowerlist(followerlist===true?false:true)
+    const [followerlist, setFollowerlist] = useState(false)
+    const toggleFollower = () => {
+        setFollowerlist(followerlist === true ? false : true)
     }
-    const filterFollowing=follow.filter((f)=>f.followedBy===currentUser.name)
-    const filterFollowers=follow.filter((f)=>f.following===currentUser.name)
+    const filterFollowing = follow.filter((f) => f.followedBy === currentUser.name)
+    const filterFollowers = follow.filter((f) => f.following === currentUser.name)
     return (
         <div className='container'>
 
@@ -36,25 +36,28 @@ const Profile = ({ posts, setPosts,follow,setFollow }) => {
                     <strong>Followers</strong>
                     <span className='text-center'>{filterFollowers.length}</span>
                 </div>
-                {
-                    followerlist===true?
-                    filterFollowers.map((item,index)=>{
-                        return(
-
-                            <p>{item.following}</p>
-                        )
-                        }):""
-                }
-                   
                 <div className="d-flex flex-column" >
                     <strong>Following</strong>
                     <span className='text-center'>{filterFollowing.length}</span>
                 </div>
             </div>
-            
+
             <br />
             <hr />
             <br />
+            {followerlist === true ?
+                <h1>Followers</h1> : ""
+            }
+            {
+                filterFollowers.map((item, index) => {
+                    return (
+                        <div className={followerlist === true ? 'p-3 bg-light rounded d-flex align-items-center ' : "d-none"}>
+                            <i class="fa-solid fa-circle-user"></i>
+                            <span >{item.followedBy}</span>
+                        </div>
+                    )
+                })
+            }
             <Row className=" m-auto mb-5">
 
                 {
@@ -77,9 +80,9 @@ const Profile = ({ posts, setPosts,follow,setFollow }) => {
                                     <p>{item.post}</p>
                                     <hr />
                                     <div className="d-flex justify-content-around">
-                                        
+
                                         <i className="fa-solid fa-xmark text-danger" onClick={() => handleDelete(item.id)}></i>
-                                        <i className="fa-solid fa-pen text-primary" onClick={()=>handleEdit(item.id)}></i>
+                                        <i className="fa-solid fa-pen text-primary" onClick={() => handleEdit(item.id)}></i>
                                     </div>
                                 </div>
                             </Col>
