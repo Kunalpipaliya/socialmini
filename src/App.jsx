@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Home from './Pages/Home';
@@ -12,7 +12,7 @@ import Login from './Pages/Login';
 import Signup from './Pages/Signup';
 import Search from './Pages/Search';
 import Notification from './Pages/Notification';
-import { use } from 'react';
+// import { use } from 'react';
 function App() {
   const [posts, setPosts] = useState(() => {
     const saved = localStorage.getItem("posts");

@@ -31,7 +31,7 @@ const Notification = ({ messages, setMessages, follow, setFollow }) => {
   }
   const currentChat = JSON.parse(localStorage.getItem('currentChat'))
   const filterFollowing = follow.filter((f) => f.followedBy === currentUser.name)
-  const filterchat = messages.filter((m) => m.from === currentUser.name && m.to === currentChat || m.from === currentChat && m.to === currentUser.name)
+  const filterchat = messages.filter((m) => (m.from === currentUser.name && m.to === currentChat) || (m.from === currentChat && m.to === currentUser.name))
   return (
     <div className='container'>
 

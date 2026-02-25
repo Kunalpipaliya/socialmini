@@ -8,9 +8,9 @@ const Profile = ({ posts, setPosts, follow, setFollow }) => {
         const updatedPost = posts.filter((p) => p.id !== id)
         setPosts(updatedPost)
     }
-    const handleEdit = (id) => {
-        const filteredpost = posts.filter((p) => p.id == id)
-    }
+    // const handleEdit = (id) => {
+    //     const filteredpost = posts.filter((p) => p.id === id)
+    // }
     const [followerlist, setFollowerlist] = useState(false)
     const toggleFollower = () => {
         setFollowerlist(followerlist === true ? false : true)
@@ -82,7 +82,7 @@ const Profile = ({ posts, setPosts, follow, setFollow }) => {
                                     <div className="d-flex justify-content-around">
 
                                         <i className="fa-solid fa-xmark text-danger" onClick={() => handleDelete(item.id)}></i>
-                                        <i className="fa-solid fa-pen text-primary" onClick={() => handleEdit(item.id)}></i>
+                                        <i className="fa-solid fa-pen text-primary"></i>
                                     </div>
                                 </div>
                             </Col>
