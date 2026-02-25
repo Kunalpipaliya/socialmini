@@ -75,9 +75,10 @@ const Notification = ({ messages, setMessages, follow, setFollow }) => {
             : ""
         }
       </div>
-      <div className={specificChat === false ? "d-none" : "d-flex gap-2"} style={{ position: "fixed", bottom: "80px", width: "100%" }}>
+      <div className={specificChat === false ? "d-none" : "d-flex align-items-center gap-3"} style={{ position: "fixed", bottom: "80px", width: "100%" }}>
         <input type="text" className="form-control w-75" value={message} onChange={(e) => setMessage(e.target.value)} placeholder='write a message' />
-        <button className="btn btn-primary" type='button' onClick={handleMessages}>send</button>
+        {/* <button className="btn btn-primary" type='button' onClick={handleMessages}>send</button> */}
+        <i class="fa-solid fa-paper-plane text-primary" onClick={handleMessages}></i>
       </div>
     </div>
   )
